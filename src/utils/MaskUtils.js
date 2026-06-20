@@ -1,7 +1,3 @@
-MaskUtils.js
-
-
-
 export const maskAadhaar = aadhaar =>
     aadhaar ? `XXXX-XXXX-${aadhaar.slice(-4)}` : "";
 

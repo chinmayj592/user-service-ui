@@ -1,151 +1,114 @@
-
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "../api/axiosInstance";
-import "../styles/CreateUser.css";
-
-export default function CreateUserPage() {
-const [form, setForm] = useState({
-  name: "",
-  email: "",
-  primaryMobile: "",
-  secondaryMobile: "",
-  aadhaar: "",
-  pan: "",
-  dateOfBirth: "",
-  placeOfBirth: "",
-  currentAddress: "",
-  permanentAddress: ""
-});
-
-const [loading, setLoading] = useState(false);
-const [message, setMessage] = useState("");
-  const navigate = useNavigate();
-
-  function handleChange(e) {
-setForm({ ...form, [e.target.name]: e.target.value });
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 800px;
 }
 
-  async function handleSubmit(e) {
-e.preventDefault();
-setLoading(true);
-setMessage("");
+.page h1 {
+  margin-bottom: 8px;
+}
 
-try {
-  await axios.post("/users", form);
-setMessage("✅ User created successfully! Redirecting...");
-setTimeout(() => navigate("/"), 1500);
-setForm({
-  name: "",
-  email: "",
-  primaryMobile: "",
-  secondaryMobile: "",
-  aadhaar: "",
-  pan: "",
-  dateOfBirth: "",
-  placeOfBirth: "",
-  currentAddress: "",
-  permanentAddress: ""
-});
-} catch (err) {
-setMessage(err.response?.data?.message || "❌ Something went wrong. Please try again.");
-} finally {
-  setLoading(false);
+.card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.card h2 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--accent-bg);
+  font-size: 20px;
+}
+
+.card h2:first-of-type {
+  margin-top: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.grid input,
+.grid textarea {
+  padding: 12px 14px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.grid input:focus,
+.grid textarea:focus {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+  box-shadow: 0 0 0 4px var(--accent-bg);
+}
+
+.grid textarea {
+  grid-column: 1 / -1;
+  min-height: 100px;
+  resize: vertical;
+}
+
+.card > button {
+  width: 100%;
+  padding: 13px 24px;
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.card > button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.card > button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.message {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .page {
+    max-width: 100%;
+  }
+
+  .card {
+    padding: 24px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 }
-
-  return (
-  <div className="page">
-  <h1>➕ Create New User</h1>
-
-  <form className="card" onSubmit={handleSubmit}>
-<h2>👤 Personal Details</h2>
-
-<div className="grid">
-<input
-name="name"
-placeholder="Full Name"
-value={form.name}
-  onChange={handleChange}
-  required
-  />
-  <input
-  name="email"
-  type="email"
-  placeholder="Email Address"
-  value={form.email}
-  onChange={handleChange}
-  required
-  />
-  <input
-  name="primaryMobile"
-  placeholder="Primary Mobile (+91)"
-  value={form.primaryMobile}
-  onChange={handleChange}
-  required
-  />
-  <input
-  name="secondaryMobile"
-  placeholder="Secondary Mobile (Optional)"
-  value={form.secondaryMobile}
-  onChange={handleChange}
-/>
-<input
-name="aadhaar"
-placeholder="Aadhaar Number (12 digits)"
-value={form.aadhaar}
-  onChange={handleChange}
-  required
-  />
-  <input
-  name="pan"
-  placeholder="PAN Number"
-  value={form.pan}
-  onChange={handleChange}
-  required
-  />
-  <input
-  type="date"
-  name="dateOfBirth"
-  value={form.dateOfBirth}
-  onChange={handleChange}
-  required
-  />
-  <input
-  name="placeOfBirth"
-  placeholder="Place of Birth"
-  value={form.placeOfBirth}
-  onChange={handleChange}
-/>
-</div>
-
-<h2>📍 Address Details</h2>
-
-<div className="grid">
-<textarea
-name="currentAddress"
-placeholder="Current Address (Street, City, State, Zip)"
-value={form.currentAddress}
-  onChange={handleChange}
-  required
-  />
-  <textarea
-  name="permanentAddress"
-  placeholder="Permanent Address (Street, City, State, Zip)"
-  value={form.permanentAddress}
-  onChange={handleChange}
-  required
-  />
-  </div>
-
-  <button type="submit" disabled={loading}>
-                                          {loading ? "💾 Saving..." : "✨ Create User"}
-</button>
-
-{message && <p className="message">{message}</p>}
-</form>
-</div>
-);
-}
-
-

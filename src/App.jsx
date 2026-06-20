@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import HomePage from "./pages/HomePage";
 import UserListPage from "./pages/UserListPage";
 import CreateUserPage from "./pages/CreateUserPage";
 import EditUserPage from "./pages/EditUserPage";
@@ -18,6 +19,12 @@ function AppHeader() {
           <button
             className={location.pathname === "/" ? "nav-active" : ""}
             onClick={() => navigate("/")}
+          >
+            🏠 Home
+          </button>
+          <button
+            className={location.pathname === "/users" ? "nav-active" : ""}
+            onClick={() => navigate("/users")}
           >
             👥 Users
           </button>
@@ -40,7 +47,8 @@ export default function App() {
           <AppHeader />
           <main className="app-main">
             <Routes>
-              <Route path="/" element={<UserListPage />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/users" element={<UserListPage />} />
               <Route path="/create" element={<CreateUserPage />} />
               <Route path="/edit/:id" element={<EditUserPage />} />
             </Routes>

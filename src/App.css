@@ -1,7 +1,3 @@
-App.css
-
-
-
 
 .app-container {
   display: flex;
@@ -28,12 +24,6 @@ App.css
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-
-  @media (max-width: 768px) {
-    padding: 0 16px;
-    flex-direction: column;
-    gap: 12px;
-  }
 }
 
 .app-title {
@@ -79,14 +69,6 @@ App.css
   width: 100%;
   margin: 0 auto;
   padding: 32px 28px;
-
-  @media (max-width: 768px) {
-    padding: 20px 16px;
-  }
-
-  @media (max-width: 640px) {
-    padding: 16px 12px;
-  }
 }
 
 .app-footer {
@@ -104,7 +86,6 @@ App.css
   font-weight: 500;
 }
 
-/* Loading State */
 .loading {
   display: flex;
   justify-content: center;
@@ -117,3 +98,20 @@ App.css
   color: var(--text);
 }
 
+@media (max-width: 768px) {
+  .header-content {
+    padding: 0 16px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .app-main {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-main {
+    padding: 16px 12px;
+  }
+}
