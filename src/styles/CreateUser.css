@@ -1,0 +1,149 @@
+CreateUser.css
+
+
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 800px;
+}
+
+.page h1 {
+  margin-bottom: 8px;
+}
+
+.card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.card h2 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--accent-bg);
+  font-size: 20px;
+}
+
+.card h2:first-of-type {
+  margin-top: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.grid input,
+.grid textarea {
+  padding: 12px 14px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.grid input:focus,
+.grid textarea:focus {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+  box-shadow: 0 0 0 4px var(--accent-bg);
+}
+
+.grid textarea {
+  grid-column: 1 / -1;
+  min-height: 100px;
+  resize: vertical;
+}
+
+.card > button {
+  width: 100%;
+  padding: 13px 24px;
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.card > button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.card > button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.message {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.message:contains("✅") {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 2px solid var(--success);
+}
+
+.message:contains("❌") {
+  background: var(--error-bg);
+  color: var(--error);
+  border: 2px solid var(--error);
+}
+
+/* Success Message */
+p:has-text("✅") {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 2px solid var(--success);
+  padding: 12px 16px;
+  border-radius: 10px;
+}
+
+/* Error Message */
+p:has-text("❌") {
+  background: var(--error-bg);
+  color: var(--error);
+  border: 2px solid var(--error);
+  padding: 12px 16px;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .page {
+    max-width: 100%;
+  }
+
+  .card {
+    padding: 24px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+

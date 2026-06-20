@@ -1,0 +1,156 @@
+UserList.css
+
+
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.table-card {
+  margin-top: 16px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.table-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+th {
+  background: linear-gradient(135deg, var(--accent-bg) 0%, rgba(99, 102, 241, 0.05) 100%);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+th,
+td {
+  padding: 16px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+tbody tr {
+  transition: all 0.2s ease;
+}
+
+tbody tr:hover td {
+  background: linear-gradient(90deg, var(--accent-bg) 0%, transparent 100%);
+  transform: scale(1.01);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+td {
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+td:first-child {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Button Group in Table */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.action-buttons button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.action-buttons button.edit {
+  background: linear-gradient(135deg, var(--info) 0%, #2563eb 100%);
+}
+
+.action-buttons button.edit:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.action-buttons button.delete {
+  background: linear-gradient(135deg, var(--error) 0%, #dc2626 100%);
+}
+
+.action-buttons button.delete:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* No data message */
+.no-data {
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--text);
+  font-size: 16px;
+}
+
+/* Header with Create Button */
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.header-section h1 {
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
+}
+
+@media (max-width: 768px) {
+  th,
+  td {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-buttons button {
+    width: 100%;
+  }
+
+  .header-section {
+    flex-direction: column;
+  }
+
+  .header-section button {
+    width: 100%;
+  }
+}
